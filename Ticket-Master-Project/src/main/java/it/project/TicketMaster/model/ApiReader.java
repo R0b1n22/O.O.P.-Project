@@ -59,4 +59,9 @@ public class ApiReader {
 		}
 		return eventi;
 	}
+//GET TOTAL ELEMENTS
+	public Long getNum () {
+		Long num = (Long) ((JSONObject) jsonR.get("page")).get("totalElements");
+		return num;
+	}
 }
