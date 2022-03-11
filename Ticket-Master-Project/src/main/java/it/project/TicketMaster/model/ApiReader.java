@@ -35,7 +35,27 @@ public class ApiReader {
 		    event = ((JSONObject) events.get(i));
 		    Event e = new Event ((String) event.get("id"));
 		    e.setName((String) event.get("name"));
-		    e.setUrl((String) event.get("url"));   
+		    e.setUrl((String) event.get("url"));
+		    JSONObject obj = (JSONObject) event.get("dates");
+		    obj = (JSONObject) obj.get("start");
+		    e.setDate((String) obj.get("localDate"));
+		    e.setHour((String) obj.get("localTime"));
+		    JSONArray arr = (JSONArray) event.get("classifications");
+		    obj = (JSONObject) arr.get(0);
+		    obj = (JSONObject) obj.get("genre");
+		    e.setGenre((String) obj.get("name"));
+		    obj = (JSONObject) event.get("_embedded");
+		    arr = (JSONArray) obj.get("venues");
+		    obj = (JSONObject) arr.get(0);
+		    e.setVenue((String) obj.get("name"));
+		    JSONObject app = obj;
+		    obj = (JSONObject) obj.get("city");
+		    e.setCity((String) obj.get("name"));
+		    obj = (JSONObject) app.get("state");
+		    e.setState((String) obj.get("name"));
+		    obj = (JSONObject) app.get("country");
+		    e.setCountry((String) obj.get("name"));
+		    eventi.add(e);    
 		}
 		return eventi;
 	}
