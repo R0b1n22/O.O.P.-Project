@@ -25,4 +25,18 @@ public class ApiReader {
 		JSONParser parser = new JSONParser();
 		this.jsonR = (JSONObject) parser.parse(read);
 	}
+//GETTER
+	public Vector<Event> getter () {
+		String id = null;
+		JSONObject event;
+		JSONObject embedded = (JSONObject) jsonR.get("_embedded");
+		JSONArray events = (JSONArray) embedded.get("events");
+		for (int i = 0; i < events.size(); i++) {  
+		    event = ((JSONObject) events.get(i));
+		    Event e = new Event ((String) event.get("id"));
+		    e.setName((String) event.get("name"));
+		    e.setUrl((String) event.get("url"));   
+		}
+		return eventi;
+	}
 }
