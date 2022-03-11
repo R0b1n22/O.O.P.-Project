@@ -39,8 +39,28 @@ public abstract class ServiceImp implements it.project.TicketMaster.service.Serv
 		}
 		Media = (double) (sum/12);
 		out.put("Monthly average: ", Media);
-	}
+	}	
+	
+	@Override
+	public void mediaCalculator2(Vector<Long> num)
+	{
+		JSONObject obj1 = new JSONObject();
+		Long lastData = null;
+		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Dicember"};
+		int month = 0;
 		
+		for(int i = 0 ; i < 12; i++)
+		{
+			if(num.get(i)>lastData)
+			{
+				lastData = num.get(i);
+				month = i;
+			}
+		}
+		obj1.put(months[month], lastData);
+		out.put("Month with more events: ", obj1);
+	}
+	
 	@Override
 	public JSONObject getStats()
 	{
