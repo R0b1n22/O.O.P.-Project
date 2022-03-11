@@ -13,5 +13,6 @@ public interface Service {
 
 	public abstract void calculator(Vector<Event>events);
 	public abstract void mediaCalculator(Vector<Long> num);	
+	public abstract void mediaCalculator2(Vector<Long> num);
 	public abstract JSONObject getStats();
 }
