@@ -6,8 +6,10 @@ public class ApiReader {
 	private JSONObject jsonR;
 	private Vector<Event> eventi = new Vector<Event>();
 //BUILDER	
-	public ApiReader (String url) throws FileNotFoundException, IOException, ParseException {
+	public ApiMenager (String url, boolean flag) throws FileNotFoundException, IOException, ParseException {
 		this.url = url;
+		this.parser();
+		if (flag) this.getter();
 	}
 //GETTER & SETTER	
 	public JSONObject getJsonobj() {
