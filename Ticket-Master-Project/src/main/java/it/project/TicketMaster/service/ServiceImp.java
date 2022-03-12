@@ -73,7 +73,8 @@ public class ServiceImp {
 				month = i;
 			}
 		}
-		obj1.put(months[month], lastData);
+		obj1.put("Month",months[month]);
+		obj1.put("Events number",lastData);
 		out.put("Month with more events: ", obj1);
 	}
 	
