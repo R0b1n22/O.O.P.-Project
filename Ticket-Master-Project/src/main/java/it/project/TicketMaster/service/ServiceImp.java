@@ -22,21 +22,13 @@ public class ServiceImp {
 	Vector<Long> num = new Vector<Long> ();
 	ApiReader file;
 	
-	//BUILDERS()
-	public ServiceImp(ApiReader file) throws FileNotFoundException, IOException, ParseException 
+	//BUILDER()
+	public ServiceImp(ApiReader file, String param) throws FileNotFoundException, IOException, ParseException
 	{
 		this.file = file;
 		calculator(file.getNum());
-		mediaCalculator(this.returnMonthlyEvents());
-		mediaCalculator2(this.returnMonthlyEvents());
-	}
-	
-	public ServiceImp(ApiReader file, String city) throws FileNotFoundException, IOException, ParseException
-	{
-		this.file = file;
-		calculator(file.getNum());
-		mediaCalculator(this.returnCityEvents(city));
-		mediaCalculator2(this.returnCityEvents(city));
+		mediaCalculator(this.returnMonthlyEvents(param));
+		mediaCalculator2(this.returnMonthlyEvents(param));
 	}
 	
 	public void calculator(Long num)
@@ -79,7 +71,7 @@ public class ServiceImp {
 	}
 	
 	
-	public Vector<Long> returnMonthlyEvents() throws FileNotFoundException, IOException, ParseException 
+	public Vector<Long> returnMonthlyEvents(String param) throws FileNotFoundException, IOException, ParseException 
 	{
 		String mese;
 		
@@ -93,7 +85,7 @@ public class ServiceImp {
 				case 12: mese = "&startDateTime=2022-12-01T00:00:00Z&endDateTime=2022-12-31T23:59:59Z"; break;
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
-			ApiReader file = new ApiReader (url + api_key + "&countryCode=CA" + mese);
+			ApiReader file = new ApiReader (url + api_key + param + mese);
     		file.Parser();
     		
     		for(int j = 1; j <= 12; j++)
@@ -103,33 +95,6 @@ public class ServiceImp {
     	}
 		return num;
 	}
-	
-	
-	public Vector<Long> returnCityEvents(String city) throws FileNotFoundException, IOException, ParseException 
-	{
-		String mese;
-		
-		for (int i = 1; i <= 12; i++) 
-		{
-			switch (i) {
-				case 2: mese = "&startDateTime=2022-02-01T00:00:00Z&endDateTime=2022-02-28T23:59:59Z"; break;
-				case 4, 6, 9: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-30T23:59:59Z"; break;
-				case 10: mese = "&startDateTime=2022-10-01T00:00:00Z&endDateTime=2022-10-31T23:59:59Z"; break;
-				case 11: mese = "&startDateTime=2022-11-01T00:00:00Z&endDateTime=2022-11-30T23:59:59Z"; break;
-				case 12: mese = "&startDateTime=2022-12-01T00:00:00Z&endDateTime=2022-12-31T23:59:59Z"; break;
-				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
-			}
-			ApiReader file = new ApiReader (url + api_key + "&city=" + city + mese);
-    		file.Parser();
-    		
-    		for(int j = 1; j <= 12; j++)
-    		{
-    			num.add(file.getNum());
-    		}
-    	}
-		return num;
-	}
-	
 	
 	public JSONObject getStats()
 	{
