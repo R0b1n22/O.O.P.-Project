@@ -22,7 +22,7 @@ public class ApiReader {
 //BUILDER	
 	public ApiReader (String url, boolean flag) throws FileNotFoundException, IOException, ParseException {
 		this.url = url;
-		this.parser();
+		this.jsonParser();
 		if (flag) this.getter();
 	}
 //GETTER & SETTER	
