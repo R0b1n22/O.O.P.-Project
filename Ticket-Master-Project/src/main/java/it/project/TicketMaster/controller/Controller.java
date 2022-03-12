@@ -28,29 +28,13 @@ public class Controller {
 	
  
 	@Autowired
-	//…
+	ServiceImp service;
 	
 	@RequestMapping(value = "/events", method = RequestMethod.GET)
-   	public ResponseEntity<JSONObject> getEvents() throws FileNotFoundException, IOException, ParseException,EmptyStringException{
-           ResponseEntity<JSONObject> response;
-		try {
-			ApiReader file = new ApiReader(url + api_key + "&locale=*&countryCode=CA");
-			JSONObject vector = new JSONObject();
-			file.Parser();
-			vector = file.publicher(file.getter());
-		    response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
-		} catch(Exception e) {
-			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-        return response;
-    }
-	
-	
-	 @RequestMapping(value = "/cityEvents", method = RequestMethod.GET)
-	 public ResponseEntity<JSONObject>getCityEvents(@RequestParam("city") String city) throws CityNotFoundException, EmptyStringException, WrongParamException, IOException, ParseException{
-	     ResponseEntity<JSONObject> response;
+    public ResponseEntity<JSONObject> getEvents() throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+        ResponseEntity<JSONObject> response;
 	        try {
-	        	ApiReader file = new ApiReader(url + api_key + "&city=" + city + "&countryCode=CA");
+	        	ApiReader file = new ApiReader(url + api_key + "&locale=*&countryCode=CA");
 	        	JSONObject vector = new JSONObject();
 	        	file.Parser();
 	        	vector = file.publicher(file.getter());
@@ -58,38 +42,52 @@ public class Controller {
 	        } catch(Exception e) {
 	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        }
-	        return response;
+        return response;
+    }
+	
+	
+	 @RequestMapping(value = "/cityEvents", method = RequestMethod.GET)
+	 public ResponseEntity<JSONObject>getCityEvents(@RequestParam("city") String city) throws CityNotFoundException, EmptyStringException, WrongParamException, IOException, ParseException{
+	      ResponseEntity<JSONObject> response;
+		      try {
+		        	ApiReader file = new ApiReader(url + api_key + "&city=" + city + "&countryCode=CA");
+		        	JSONObject vector = new JSONObject();
+		        	file.Parser();
+		        	vector = file.publicher(file.getter());
+		            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
+		       } catch(Exception e) {
+		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		       }
+	      return response;
 	    }
+	
 	 
-		@RequestMapping(value = "/StateStats", method = RequestMethod.GET)
-	    public ResponseEntity<JSONObject>getStateStats(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
-	        ResponseEntity<JSONObject> response;
-			try {
-
-				ApiReader file = new ApiReader(url + api_key + "&countryCode=" + countryCode);
-				ServiceImp service = new ServiceImp(file);
-
-				response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);        
-			} catch(Exception e) {
-				response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-	        return response;
+	 @RequestMapping(value = "/StateStats", method = RequestMethod.GET)
+	 public ResponseEntity<JSONObject>getStateStats(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	     ResponseEntity<JSONObject> response;
+		     try {
+		           ApiReader file = new ApiReader(url + api_key);
+		           service = new ServiceImp(file,"&countryCode=" + countryCode);
+		           response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);        
+		        } catch(Exception e) {
+		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		        }
+	     return response;
 	    }
 	 
 		
-		
-	    @RequestMapping(value = "/CityStats", method = RequestMethod.GET)
-	    public ResponseEntity<JSONObject>getCityStats(@RequestParam("city") String city) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
-	        ResponseEntity<JSONObject> response;
-			try {
-				ApiReader file = new ApiReader (url + api_key + "&city=" + city);
-				ServiceImp service = new ServiceImp(file, city);
-
-				response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);
-			} catch(Exception e) {
-				response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-	        return response;
+	 @RequestMapping(value = "/CityStats", method = RequestMethod.GET)
+	 public ResponseEntity<JSONObject>getCityStats(@RequestParam("city") String city) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	     ResponseEntity<JSONObject> response;
+	        try {
+	        	ApiReader file = new ApiReader (url + api_key);
+	        	service = new ServiceImp(file, "&city=" + city);
+	    		
+	    		response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);
+	        } catch(Exception e) {
+	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
+	     return response;
 	    }
 	    
 }
