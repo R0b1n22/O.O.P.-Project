@@ -68,29 +68,12 @@ public class ApiReader {
 	}
 //PUBLICHER
 	public JSONObject publicher () {
-		JSONObject out = new JSONObject();
-		JSONArray array = new JSONArray();
-		for (int i = 0; i < events.size(); i++) {
-			JSONObject map = new JSONObject();
-			map.put("date", events.get(i).getDate());
-			map.put("id", events.get(i).getId());
-			map.put("name", events.get(i).getName());
-			map.put("url",events.get(i).getUrl());
-			map.put("genre", events.get(i).getGenre());
-			map.put("subgenre", events.get(i).getSubgenre());
-			map.put("hour", events.get(i).getHour());
-			map.put("city", events.get(i).getCity());
-			map.put("state", events.get(i).getState());
-			map.put("country", events.get(i).getCountry());
-			map.put("venue", events.get(i).getVenue());
-			map.put("promoter", events.get(i).getPromoter());
-			map.put("ticketLimit", events.get(i).getTicketsAvailable());
-			map.put("healthCheck", events.get(i).getHealthCheck());
-			map.put("ageRestriction", events.get(i).getAgeRestriction());
-			map.put("priceRanges", events.get(i).getPriceRanges());
-			array.add(map);
+		JSONArray out = new JSONArray();
+		JSONObject json = new JSONObject();
+		for(Event e: this.events) {
+			out.add(e);
 		}
-		out.put("Events", array);
-		return out;
+		json.put("Events", out);
+		return json;
 	}
 }
