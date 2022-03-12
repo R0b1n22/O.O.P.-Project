@@ -1,12 +1,26 @@
 package it.project.TicketMaster.model;
+//IMPORT
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.*;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class ApiReader {
 //ATTRIBUTES
 	private String url;
 	private JSONObject jsonR;
-	private Vector<Event> eventi = new Vector<Event>();
+	private Vector<Event> events = new Vector<Event>();
 //BUILDER	
-	public ApiMenager (String url, boolean flag) throws FileNotFoundException, IOException, ParseException {
+	public ApiReader (String url, boolean flag) throws FileNotFoundException, IOException, ParseException {
 		this.url = url;
 		this.parser();
 		if (flag) this.getter();
