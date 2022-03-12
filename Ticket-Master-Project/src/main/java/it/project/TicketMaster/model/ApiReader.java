@@ -28,38 +28,39 @@ public class ApiReader {
 		this.jsonR = (JSONObject) parser.parse(read);
 	}
 //GETTER
-	public Vector<Event> getter () {
+	public Vector<Event> getter () throws FileNotFoundException, IOException, ParseException {
 		String id = null;
+		JSONObject error = new JSONObject();
+		error.put("field", "not defined");
+		JSONArray arr = new JSONArray();
+		arr.add(error);
 		JSONObject event;
 		JSONObject embedded = (JSONObject) jsonR.get("_embedded");
-		JSONArray events = (JSONArray) embedded.get("events");
-		for (int i = 0; i < events.size(); i++) {  
-		    event = ((JSONObject) events.get(i));
+		JSONArray jEvents = (JSONArray) embedded.get("events");
+		for (int i = 0; i < jEvents.size(); i++) {
+		    event = ((JSONObject) jEvents.get(i));
 		    Event e = new Event ((String) event.get("id"));
 		    e.setName((String) event.get("name"));
 		    e.setUrl((String) event.get("url"));
-		    JSONObject obj = (JSONObject) event.get("dates");
-		    obj = (JSONObject) obj.get("start");
-		    e.setDate((String) obj.get("localDate"));
-		    e.setHour((String) obj.get("localTime"));
-		    JSONArray arr = (JSONArray) event.get("classifications");
-		    obj = (JSONObject) arr.get(0);
-		    obj = (JSONObject) obj.get("genre");
-		    e.setGenre((String) obj.get("name"));
-		    obj = (JSONObject) event.get("_embedded");
-		    arr = (JSONArray) obj.get("venues");
-		    obj = (JSONObject) arr.get(0);
-		    e.setVenue((String) obj.get("name"));
-		    JSONObject app = obj;
-		    obj = (JSONObject) obj.get("city");
-		    e.setCity((String) obj.get("name"));
-		    obj = (JSONObject) app.get("state");
-		    e.setState((String) obj.get("name"));
-		    obj = (JSONObject) app.get("country");
-		    e.setCountry((String) obj.get("name"));
-		    eventi.add(e);    
+		    e.setDate((String) ((JSONObject) ((JSONObject) event.get("dates")).get("start")).get("localDate"));
+		    e.setHour((String) ((JSONObject) ((JSONObject) event.get("dates")).get("start")).get("localTime"));
+		    e.setGenre((String) ((JSONObject) ((JSONObject) ((JSONArray) event.get("classifications")).get(0)).get("genre")).get("name"));
+		    e.setSubgenre((String) ((JSONObject) ((JSONObject) ((JSONArray) event.get("classifications")).get(0)).get("subGenre")).get("name"));
+		    e.setPromoter((String) ((JSONObject) event.getOrDefault("promoter", error)).get("name"));
+		    JSONObject obj = (JSONObject) ((JSONArray) event.getOrDefault("priceRanges", arr)).get(0);
+		    obj.remove("currency");
+		    obj.remove("type");
+		    e.setPriceRanges(obj); 
+		    e.setTicketsAvailable((Long) ((JSONObject) event.getOrDefault("accessibility", error)).get("ticketLimit"));
+		    e.setAgeRestriction((JSONObject) event.getOrDefault("ageRestrictions", error));
+		    e.setHealthCheck((JSONObject) ((JSONObject) event.getOrDefault("ticketing", error)).getOrDefault("healthCheck", error));
+		    e.setVenue((String) ((JSONObject) ((JSONArray) ((JSONObject) event.get("_embedded")).get("venues")).get(0)).get("name"));
+		    e.setCity((String) ((JSONObject) ((JSONObject) ((JSONArray) ((JSONObject) event.get("_embedded")).get("venues")).get(0)).get("city")).get("name"));
+		    e.setState((String) ((JSONObject) ((JSONObject) ((JSONArray) ((JSONObject) event.get("_embedded")).get("venues")).get(0)).get("state")).get("name"));
+		    e.setCountry((String) ((JSONObject) ((JSONObject) ((JSONArray) ((JSONObject) event.get("_embedded")).get("venues")).get(0)).get("country")).get("name"));
+		    events.add(e);  
 		}
-		return eventi;
+		return events;
 	}
 //GET TOTAL ELEMENTS
 	public Long getNum () {
