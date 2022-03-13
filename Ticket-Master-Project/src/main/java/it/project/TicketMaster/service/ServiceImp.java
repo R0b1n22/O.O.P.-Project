@@ -39,8 +39,8 @@ public class ServiceImp {
 	
 	public void mediaCalculator(Vector<Long> num)
 	{
-		Long sum = null;
-		Double Media = null;
+		Long sum = (long) 0;
+		Double Media = 0.00;
 		for(int i = 0 ; i < 12; i++)
 		{
 			sum += num.get(i);
@@ -53,7 +53,7 @@ public class ServiceImp {
 	public void mediaCalculator2(Vector<Long> num)
 	{
 		JSONObject obj1 = new JSONObject();
-		Long lastData = null;
+		Long lastData = (long) 0;
 		String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "Dicember"};
 		int month = 0;
 		
@@ -87,12 +87,9 @@ public class ServiceImp {
 			}
 			this.file = new ApiReader (url + api_key + param + mese,false);
     			file.Parser();
-    		
-    		for(int j = 1; j <= 12; j++)
-    		{
     			num.add(file.getNum());
+    		
     		}
-    	}
 		return num;
 	}
 	
