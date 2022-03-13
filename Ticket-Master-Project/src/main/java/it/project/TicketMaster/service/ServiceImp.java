@@ -19,25 +19,26 @@ public class ServiceImp {
 	private static JSONObject out = new JSONObject();
 	private String api_key = "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0";
 	private String url = "https://app.ticketmaster.com/discovery/v2/events?apikey=";
-	Vector<Long> num = new Vector<Long> ();
+	Long num[];
 	ApiReader file;
 	
 	//BUILDER()
 	public ServiceImp(String param) throws FileNotFoundException, IOException, ParseException
 	{
 		this.file = new ApiReader(url + api_key + param,false);
+		returnMonthlyEvents(param);
 		calculator(file.getNum());
-		mediaCalculator(this.returnMonthlyEvents(param));
-		mediaCalculator2(this.returnMonthlyEvents(param));
+		mediaCalculator(num);
+		mediaCalculator2(num);
 	}
 	
 	public void calculator(Long num)
 	{
-		out.put("Events", num);
+		out.put("events", num);
 	}
 
 	
-	public void mediaCalculator(Vector<Long> num)
+	public void mediaCalculator(Long[] num)
 	{
 		Long sum = (long) 0;
 		Double Media = 0.00;
@@ -46,11 +47,11 @@ public class ServiceImp {
 			sum += num.get(i);
 		}
 		Media = (double) (sum/12);
-		out.put("Monthly average: ", Media);
+		out.put("monthlyAverage", Media);
 	}
 	
 	
-	public void mediaCalculator2(Vector<Long> num)
+	public void mediaCalculator2(Long[] num)
 	{
 		JSONObject obj1 = new JSONObject();
 		Long lastData = (long) 0;
@@ -65,13 +66,13 @@ public class ServiceImp {
 				month = i;
 			}
 		}
-		obj1.put("Month",months[month]);
-		obj1.put("Events number",lastData);
-		out.put("Month with more events: ", obj1);
+		obj1.put("month",months[month]);
+		obj1.put("eventsNumber",lastData);
+		out.put("monthWithMoreEvents", obj1);
 	}
 	
 	
-	public Vector<Long> returnMonthlyEvents(String param) throws FileNotFoundException, IOException, ParseException 
+	public void returnMonthlyEvents(String param) throws FileNotFoundException, IOException, ParseException 
 	{
 		String mese;
 		
@@ -90,7 +91,7 @@ public class ServiceImp {
     			num.add(file.getNum());
     		
     		}
-		return num;
+		out.put("num",num);
 	}
 	
 	public JSONObject getStats()
