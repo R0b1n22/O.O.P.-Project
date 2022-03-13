@@ -62,6 +62,20 @@ public class Controller {
 	    }
 	
 	 
+	 @RequestMapping(value = "/StateStats", method = RequestMethod.GET)
+	 public ResponseEntity<JSONObject>getStateStats(@RequestParam("stateCode") String stateCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	     ResponseEntity<JSONObject> response;
+		     try {
+		           ApiReader file = new ApiReader(url + api_key,false);
+		           service = new ServiceImp("&stateCode=" + stateCode);
+		           response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);        
+		        } catch(Exception e) {
+		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		        }
+	     return response;
+	    }
+	
+	
 	 @RequestMapping(value = "/CountryStats", method = RequestMethod.GET)
 	 public ResponseEntity<JSONObject>getCountryStats(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
 	     ResponseEntity<JSONObject> response;
