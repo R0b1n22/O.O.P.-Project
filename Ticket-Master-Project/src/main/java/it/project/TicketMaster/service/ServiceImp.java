@@ -23,9 +23,9 @@ public class ServiceImp {
 	ApiReader file;
 	
 	//BUILDER()
-	public ServiceImp(ApiReader file, String param) throws FileNotFoundException, IOException, ParseException
+	public ServiceImp(String param) throws FileNotFoundException, IOException, ParseException
 	{
-		this.file = file;
+		this.file = new ApiReader(url + api_key + param,false);
 		calculator(file.getNum());
 		mediaCalculator(this.returnMonthlyEvents(param));
 		mediaCalculator2(this.returnMonthlyEvents(param));
@@ -85,8 +85,8 @@ public class ServiceImp {
 				case 12: mese = "&startDateTime=2022-12-01T00:00:00Z&endDateTime=2022-12-31T23:59:59Z"; break;
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
-			ApiReader file = new ApiReader (url + api_key + param + mese);
-    		file.Parser();
+			this.file = new ApiReader (url + api_key + param + mese,false);
+    			file.Parser();
     		
     		for(int j = 1; j <= 12; j++)
     		{
