@@ -67,7 +67,7 @@ public class Controller {
 	     ResponseEntity<JSONObject> response;
 		     try {
 		           ApiReader file = new ApiReader(url + api_key,false);
-		           service = new ServiceImp(file,"&countryCode=" + countryCode);
+		           service = new ServiceImp("&countryCode=" + countryCode);
 		           response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);        
 		        } catch(Exception e) {
 		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -81,8 +81,7 @@ public class Controller {
 	     ResponseEntity<JSONObject> response;
 	        try {
 	        	ApiReader file = new ApiReader (url + api_key,false);
-	        	service = new ServiceImp(file, "&city=" + city);
-	    		
+	        	service = new ServiceImp("&city=" + city);
 	    		response = new ResponseEntity<JSONObject>(service.getStats(),HttpStatus.OK);
 	        } catch(Exception e) {
 	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
