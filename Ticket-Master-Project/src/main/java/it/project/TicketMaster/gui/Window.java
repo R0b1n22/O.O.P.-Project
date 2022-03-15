@@ -19,7 +19,7 @@ import org.json.simple.parser.ParseException;
 
 public class Window extends JFrame{
 //ATTRIBUTI
-	JButton ev_Stats = new JButton("Mostra Statistiche");
+	JButton ev_Country_Stats = new JButton("Mostra Statistiche");
 	JButton ev_State_Stats = new JButton("Mostra Statistiche");
 	JButton ev_City_Stats = new JButton("Mostra Statistiche");
 	TextField state = new TextField(15);
@@ -41,7 +41,7 @@ public class Window extends JFrame{
 		JPanel panel = new JPanel (new GridLayout (3, 3, 15, 15));
 		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
 		panel.add(new JLabel(""));
-		panel.add(ev_Stats);
+		panel.add(ev_Country_Stats);
 		panel.add(new JLabel("Eventi di (Inserisci il codice dello Stato)", JLabel.RIGHT));
 		panel.add(state);
 		panel.add(ev_State_Stats);
@@ -62,7 +62,7 @@ public class Window extends JFrame{
 	
 //Listener for Stats Buttons	
 	public void Listener () {
-		ev_Stats.addActionListener(new ActionListener() {
+		ev_Country_Stats.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				ApiReader file;
@@ -104,5 +104,50 @@ public class Window extends JFrame{
 	}
 	
 	public void statsDisplayer (ApiReader file, String name) {
+		JSONObject stats = file.getJsonobj();
+//Stats getter
+		JPanel statsPnl = new JPanel(new GridLayout(3, 2, 10, 10));
+		statsPnl.add(new JLabel("Total events:"));
+		TextField events = new TextField("" + (Long) stats.get("events"));
+		statsPnl.add(events);
+		events.setEditable(false);
+		statsPnl.add(new JLabel("Monthly average:"));
+		TextField monthlyAverage = new TextField("" + (Double) stats.get("monthlyAverage"));
+		statsPnl.add(monthlyAverage);
+		monthlyAverage.setEditable(false);
+		statsPnl.add(new JLabel("Month with more events:"));
+		TextField monthWME = new TextField((String) ((JSONObject) stats.get("monthWithMoreEvents")).get("month"));
+		statsPnl.add(monthWME);
+		monthWME.setEditable(false);
+//Panel with BoxLayout
+		JPanel boxPnl = new JPanel();
+		boxPnl.add(statsPnl);
+		boxPnl.setLayout(new BoxLayout(boxPnl, BoxLayout.X_AXIS));
+//Panel with FlowLayout
+		JPanel flowPnl = new JPanel();
+		flowPnl.add(boxPnl);
+		flowPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
+//Months events number getter
+		JPanel monthPnl = new JPanel(new GridLayout(4, 6, 10, 10));
+		JSONArray monthlyEv = (JSONArray) stats.get("num");
+		String [] months = {"January:","February:","March:","April:","May:","June:","July:","August:","September:","October:","November:","December:"};
+		for(int i = 0; i < 12; i++) {
+			monthPnl.add(new JLabel(months[i]));
+			TextField num = new TextField("" +  monthlyEv.get(i));
+			monthPnl.add(num);
+			num.setEditable(false);
+		}
+		monthPnl.setBackground(color);
+//Panel with FlowLayout
+		JPanel flowPnl2 = new JPanel();
+		flowPnl2.add(monthPnl);
+		flowPnl2.setLayout(new FlowLayout(FlowLayout.LEFT));
+//Frame
+		JFrame statsFrame = new JFrame("Stats of " + name);
+		statsFrame.getContentPane().add(flowPnl, BorderLayout.NORTH);
+		statsFrame.getContentPane().add(flowPnl2, BorderLayout.CENTER);
+		statsFrame.setLocationRelativeTo(null);
+		statsFrame.setSize(500, 300);
+		statsFrame.setVisible(true);
 	}
 }
