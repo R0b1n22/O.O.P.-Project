@@ -5,6 +5,8 @@ public class Window extends JFrame{
 	JButton ev_Stats = new JButton("Mostra Statistiche");
 	JButton ev_State_Stats = new JButton("Mostra Statistiche");
 	JButton ev_City_Stats = new JButton("Mostra Statistiche");
+	TextField state = new TextField(15);
+	TextField city = new TextField(15);
 //BUILDER
 	public Window (String titolo) { 	
 		super(titolo);
@@ -14,22 +16,30 @@ public class Window extends JFrame{
   	}
 
 	public void init () {
+	//Setting ActionCommand for buttons
 		ev_Stats.setActionCommand("Stats");
 		ev_State_Stats.setActionCommand("evStateStats");
 		ev_City_Stats.setActionCommand("evCityStats");
-		JPanel panel = new JPanel (new GridLayout (3, 2 15, 15));
+	//Panel for JLabel, TextField and JButton
+		JPanel panel = new JPanel (new GridLayout (3, 3, 15, 15));
 		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
+		panel.add(new JLabel(""));
 		panel.add(ev_Stats);
 		panel.add(new JLabel("Eventi di (Inserisci il codice dello Stato)", JLabel.RIGHT));
+		panel.add(state);
 		panel.add(ev_State_Stats);
 		panel.add(new JLabel("Eventi di (Inserisci Città)", JLabel.RIGHT));
+		panel.add(city);
 		panel.add(ev_City_Stats);
+	//Panel for BoxLayout
 		JPanel pnl1 = new JPanel();
 		pnl1.setLayout(new BoxLayout(pnl1, BoxLayout.X_AXIS));
 		pnl1.add(panel);
+	//Panel for FlowLayout
 		JPanel pnl2 = new JPanel();
 		pnl2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		pnl2.add(pnl1);
-		this.getContentPane().add(pnl2, BorderLayout.CENTER
+	//Adding final panel to JFrame
+		this.getContentPane().add(pnl2, BorderLayout.CENTER);
 	}
 }
