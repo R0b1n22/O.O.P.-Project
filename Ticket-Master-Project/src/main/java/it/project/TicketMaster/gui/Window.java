@@ -14,7 +14,7 @@ public class Window extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
   	}
-
+//METHODS (for the main screen and the stats window)
 	public void init () {
 	//Setting ActionCommand for buttons
 		ev_Stats.setActionCommand("Stats");
@@ -41,5 +41,24 @@ public class Window extends JFrame{
 		pnl2.add(pnl1);
 	//Adding final panel to JFrame
 		this.getContentPane().add(pnl2, BorderLayout.CENTER);
+	}
+	
+//Listener for Stats Buttons	
+	public void Listener () {
+		ev_Stats.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {					
+			}
+		});
+		ev_State_Stats.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+			}
+		});
+		ev_City_Stats.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+			}
+		});
 	}
 }
