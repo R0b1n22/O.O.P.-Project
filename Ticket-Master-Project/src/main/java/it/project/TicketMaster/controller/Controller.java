@@ -36,7 +36,6 @@ public class Controller {
 	        try {
 	        	ApiReader file = new ApiReader(url + api_key + "&locale=*&countryCode=" + countryCode,true);
 	        	JSONObject vector = new JSONObject();
-	        	file.jsonParser();
 	        	vector = file.publicher();
 	            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
 	        } catch(Exception e) {
@@ -52,7 +51,6 @@ public class Controller {
 		      try {
 		        	ApiReader file = new ApiReader(url + api_key + "&city=" + city,true);
 		        	JSONObject vector = new JSONObject();
-		        	file.jsonParser();
 		        	vector = file.publicher();
 		            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
 		       } catch(Exception e) {
