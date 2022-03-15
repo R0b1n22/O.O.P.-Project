@@ -21,11 +21,11 @@ public class ApiReader {
 	private String url;
 	private JSONObject jsonR;
 	private Vector<Event> events = new Vector<Event>();
-//BUILDER	
-	public ApiReader (String url, boolean flag) throws FileNotFoundException, IOException, ParseException {
+//CONSTRUCTOR	
+	public ApiReader (String url, boolean doGetter, boolean statsReader) throws FileNotFoundException, IOException, ParseException {
 		this.url = url;
-		this.jsonParser();
-		if (flag) this.getter();
+		if (doGetter) this.getter();
+		else this.jsonParser(0,statsReader);
 	}
 //GETTER & SETTER	
 	public JSONObject getJsonobj() {
@@ -36,16 +36,10 @@ public class ApiReader {
 		this.jsonR = jsonobj;
 	}
 //PARSER	
-	public void jsonParser () throws FileNotFoundException, IOException, ParseException {
-		URL url = new URL(this.url);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		BufferedReader read = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-		JSONParser parser = new JSONParser();
-		this.jsonR = (JSONObject) parser.parse(read);
-	}
-//READER
-	public boolean reader (long page) throws FileNotFoundException, IOException, ParseException {
-		URL url = new URL(this.url + "&page=" + page);
+	public boolean jsonParser (long page, boolean statsReader) throws FileNotFoundException, IOException, ParseException {
+		URL url;
+		if(statsReader) url = new URL(this.url);
+		else url = new URL(this.url + "&page=" + page);
 		ResponseEntity response;
 		try {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
