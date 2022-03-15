@@ -31,12 +31,12 @@ public class Controller {
 	ServiceImp service;
 	
 	@RequestMapping(value = "/events", method = RequestMethod.GET)
-    public ResponseEntity<JSONObject> getEvents() throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+    public ResponseEntity<JSONObject> getEvents(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
         ResponseEntity<JSONObject> response;
 	        try {
-	        	ApiReader file = new ApiReader(url + api_key + "&locale=*&countryCode=CA",true);
+	        	ApiReader file = new ApiReader(url + api_key + "&locale=*&countryCode=" + countryCode,true);
 	        	JSONObject vector = new JSONObject();
-	        	file.Parser();
+	        	file.jsonParser();
 	        	vector = file.publicher();
 	            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
 	        } catch(Exception e) {
@@ -50,9 +50,9 @@ public class Controller {
 	 public ResponseEntity<JSONObject>getCityEvents(@RequestParam("city") String city) throws CityNotFoundException, EmptyStringException, WrongParamException, IOException, ParseException{
 	      ResponseEntity<JSONObject> response;
 		      try {
-		        	ApiReader file = new ApiReader(url + api_key + "&city=" + city + "&countryCode=CA",true);
+		        	ApiReader file = new ApiReader(url + api_key + "&city=" + city,true);
 		        	JSONObject vector = new JSONObject();
-		        	file.Parser();
+		        	file.jsonParser();
 		        	vector = file.publicher();
 		            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
 		       } catch(Exception e) {
