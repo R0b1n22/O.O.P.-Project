@@ -35,9 +35,7 @@ public class Controller {
         ResponseEntity<JSONObject> response;
 	        try {
 	        	ApiReader file = new ApiReader(url + api_key + "&countryCode=" + countryCode,true);
-	        	JSONObject vector = new JSONObject();
-	        	vector = file.publicher();
-	            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
+	            	response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
 	        } catch(Exception e) {
 	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        }
@@ -50,9 +48,7 @@ public class Controller {
 	      ResponseEntity<JSONObject> response;
 		      try {
 		        	ApiReader file = new ApiReader(url + api_key + "&stateCode=" + stateCode,true);
-		        	JSONObject vector = new JSONObject();
-		        	vector = file.publicher();
-		            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
+		            	response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
 		       } catch(Exception e) {
 		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		       }
@@ -65,9 +61,7 @@ public class Controller {
 	      ResponseEntity<JSONObject> response;
 		      try {
 		        	ApiReader file = new ApiReader(url + api_key + "&city=" + city,true);
-		        	JSONObject vector = new JSONObject();
-		        	vector = file.publicher();
-		            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
+		            	response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
 		       } catch(Exception e) {
 		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		       }
