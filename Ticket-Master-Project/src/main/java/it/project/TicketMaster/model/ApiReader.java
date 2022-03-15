@@ -108,6 +108,9 @@ public class ApiReader {
 	public JSONObject publicher () {
 		JSONArray out = new JSONArray();
 		JSONObject json = new JSONObject();
+		JSONObject num = new JSONObject();
+		num.put("eventsDisplayed",this.events.size());
+		out.add(num);
 		for(Event e: this.events) {
 			out.add(e);
 		}
