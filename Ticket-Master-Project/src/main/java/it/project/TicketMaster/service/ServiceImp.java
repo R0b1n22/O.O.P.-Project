@@ -87,7 +87,6 @@ public class ServiceImp {
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
 			this.file = new ApiReader (url + api_key + param + mese,false);
-    			file.Parser();
     			num.add(file.getNum());
     		
     		}
