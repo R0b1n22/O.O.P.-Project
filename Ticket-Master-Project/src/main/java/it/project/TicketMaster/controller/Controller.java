@@ -30,11 +30,11 @@ public class Controller {
 	@Autowired
 	ServiceImp service;
 	
-	@RequestMapping(value = "/events", method = RequestMethod.GET)
-    public ResponseEntity<JSONObject> getEvents(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	@RequestMapping(value = "/countryEvents", method = RequestMethod.GET)
+    public ResponseEntity<JSONObject> getCountryEvents(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
         ResponseEntity<JSONObject> response;
 	        try {
-	        	ApiReader file = new ApiReader(url + api_key + "&locale=*&countryCode=" + countryCode,true);
+	        	ApiReader file = new ApiReader(url + api_key + "&countryCode=" + countryCode,true);
 	        	JSONObject vector = new JSONObject();
 	        	vector = file.publicher();
 	            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
@@ -42,7 +42,22 @@ public class Controller {
 	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        }
         return response;
-    }
+       }
+	
+	
+	 @RequestMapping(value = "/stateEvents", method = RequestMethod.GET)
+	 public ResponseEntity<JSONObject>getStateEvents(@RequestParam("stateCode") String stateCode) throws CityNotFoundException, EmptyStringException, WrongParamException, IOException, ParseException{
+	      ResponseEntity<JSONObject> response;
+		      try {
+		        	ApiReader file = new ApiReader(url + api_key + "&stateCode=" + stateCode,true);
+		        	JSONObject vector = new JSONObject();
+		        	vector = file.publicher();
+		            response = new ResponseEntity<JSONObject>(vector,HttpStatus.OK);        
+		       } catch(Exception e) {
+		        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		       }
+	      return response;
+	    }
 	
 	
 	 @RequestMapping(value = "/cityEvents", method = RequestMethod.GET)
