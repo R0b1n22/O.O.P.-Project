@@ -27,9 +27,15 @@ public class Controller {
 	@Autowired
 	ServiceImp service;
 	
-	
+	/**
+	 * 
+	 * @return response, a ResponseEntity<JSONObject>
+	 * @throws FileNotFoundException --> throws exception when it can't find the file
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 */
 	@RequestMapping(value = "/allEvents", method = RequestMethod.GET)
-    	public ResponseEntity<JSONObject> getAllEvents() throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+    	public ResponseEntity<JSONObject> getAllEvents() throws FileNotFoundException, IOException, ParseException{
         ResponseEntity<JSONObject> response;
 	        try {
 	        	ApiReader file = new ApiReader(url + api_key,true,false);
@@ -40,9 +46,18 @@ public class Controller {
         return response;
         }
 	
-	
+	/**
+	 * 
+	 * @param countryCode
+	 * @return response, a ResponseEntity<JSONObject>
+	 * @throws FileNotFoundException --> throws exception when it can't find the file
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 * @throws EmptyStringException --> Returns an error message passed to the constructor when an empty string is entered
+	 * @throws WrongParamException --> Returns an error message passed to the constructor when an illegal string is entered as a parameter
+	 */
 	@RequestMapping(value = "/countryEvents", method = RequestMethod.GET)
-    	public ResponseEntity<JSONObject> getCountryEvents(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+    	public ResponseEntity<JSONObject> getCountryEvents(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException, WrongParamException{
         ResponseEntity<JSONObject> response;
 	        try {
 	        	ApiReader file = new ApiReader(url + api_key + "&countryCode=" + countryCode,true,false);
@@ -53,9 +68,17 @@ public class Controller {
         return response;
         }
 	
-	
+	/**
+	 * 
+	 * @param stateCode
+	 * @return response, a ResponseEntity<JSONObject>
+	 * @throws EmptyStringException --> Returns an error message passed to the constructor when an empty string is entered
+	 * @throws WrongParamException --> Returns an error message passed to the constructor when an illegal string is entered as a parameter
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 */
 	@RequestMapping(value = "/stateEvents", method = RequestMethod.GET)
-	public ResponseEntity<JSONObject>getStateEvents(@RequestParam("stateCode") String stateCode) throws CityNotFoundException, EmptyStringException, WrongParamException, IOException, ParseException{
+	public ResponseEntity<JSONObject>getStateEvents(@RequestParam("stateCode") String stateCode) throws EmptyStringException, WrongParamException, IOException, ParseException{
 	ResponseEntity<JSONObject> response;
 	      try {
 			ApiReader file = new ApiReader(url + api_key + "&stateCode=" + stateCode,true,false);
@@ -66,7 +89,16 @@ public class Controller {
 	 return response;
 	 }
 	
-	
+	/**
+	 * 
+	 * @param city
+	 * @return response, a ResponseEntity<JSONObject>
+	 * @throws CityNotFoundException --> Returns an error message passed by the constructor when the city name was not found
+	 * @throws EmptyStringException --> Returns an error message passed to the constructor when an empty string is entered
+	 * @throws WrongParamException --> Returns an error message passed to the constructor when an illegal string is entered as a parameter
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 */
 	 @RequestMapping(value = "/cityEvents", method = RequestMethod.GET)
 	 public ResponseEntity<JSONObject>getCityEvents(@RequestParam("city") String city) throws CityNotFoundException, EmptyStringException, WrongParamException, IOException, ParseException{
 	 ResponseEntity<JSONObject> response;
@@ -79,9 +111,15 @@ public class Controller {
 	 return response;
 	 }
 
-	
+	/**
+	 * 
+	 * @return response, a ResponseEntity<JSONObject>
+	 * @throws FileNotFoundException --> throws exception when it can't find the file
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 */
 	 @RequestMapping(value = "/AllStats", method = RequestMethod.GET)
-	 public ResponseEntity<JSONObject>getAllStats() throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	 public ResponseEntity<JSONObject>getAllStats() throws FileNotFoundException, IOException, ParseException{
 	 ResponseEntity<JSONObject> response;
 	     try {
 		   service = new ServiceImp(""); 
@@ -92,9 +130,18 @@ public class Controller {
 	  return response;
 	  } 
 	 
-	 
+	 /**
+	  * 
+	  * @param countryCode
+	  * @return response, a ResponseEntity<JSONObject>
+	  * @throws FileNotFoundException --> throws exception when it can't find the file
+	  * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	  * @throws ParseException --> explains why and where the error occurs in source JSON text
+	  * @throws EmptyStringException --> Returns an error message passed to the constructor when an empty string is entered
+	  * @throws WrongParamException --> Returns an error message passed to the constructor when an illegal string is entered as a parameter
+	  */
 	 @RequestMapping(value = "/CountryStats", method = RequestMethod.GET)
-	 public ResponseEntity<JSONObject>getCountryStats(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	 public ResponseEntity<JSONObject>getCountryStats(@RequestParam("countryCode") String countryCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException, WrongParamException{
 	 ResponseEntity<JSONObject> response;
 	     try {
 		   service = new ServiceImp("&countryCode=" + countryCode); 
@@ -105,9 +152,18 @@ public class Controller {
 	  return response;
 	  }
 	 
-		
+	/**
+	 * 
+	 * @param stateCode
+	 * @return response, a ResponseEntity<JSONObject>
+	 * @throws FileNotFoundException --> throws exception when it can't find the file
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 * @throws EmptyStringException --> Returns an error message passed to the constructor when an empty string is entered
+	 * @throws WrongParamException --> Returns an error message passed to the constructor when an illegal string is entered as a parameter
+	 */	
 	 @RequestMapping(value = "/StateStats", method = RequestMethod.GET)
-	 public ResponseEntity<JSONObject>getStateStats(@RequestParam("stateCode") String stateCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException{
+	 public ResponseEntity<JSONObject>getStateStats(@RequestParam("stateCode") String stateCode) throws FileNotFoundException, IOException, ParseException,EmptyStringException, WrongParamException{
 	 ResponseEntity<JSONObject> response;
 	     try {
 		   service = new ServiceImp("&stateCode=" + stateCode);
@@ -118,7 +174,16 @@ public class Controller {
 	 return response;
 	 }
 	 
-	 
+	 /**
+	  * 
+	  * @param city
+	  * @return response, a ResponseEntity<JSONObject>
+	  * @throws CityNotFoundException --> Returns an error message passed by the constructor when the city name was not found
+	  * @throws FileNotFoundException --> throws exception when it can't find the file
+	  * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	  * @throws ParseException --> explains why and where the error occurs in source JSON text
+	  * @throws EmptyStringException --> Returns an error message passed to the constructor when an empty string is entered
+	  */
 	 @RequestMapping(value = "/CityStats", method = RequestMethod.GET)
 	 public ResponseEntity<JSONObject>getCityStats(@RequestParam("city") String city) throws CityNotFoundException, FileNotFoundException, IOException, ParseException,EmptyStringException{
 	 ResponseEntity<JSONObject> response;
