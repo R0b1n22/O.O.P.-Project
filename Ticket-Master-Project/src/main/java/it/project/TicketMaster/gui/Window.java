@@ -12,6 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import java.io.IOException;
+import org.json.simple.parser.ParseException;
+
 public class Window extends JFrame{
 //ATTRIBUTI
 	JButton ev_Stats = new JButton("Mostra Statistiche");
