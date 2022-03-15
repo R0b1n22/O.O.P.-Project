@@ -5,9 +5,6 @@ import it.project.TicketMaster.model.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Vector;
 
 import org.json.simple.*;
 import org.json.simple.parser.ParseException;
@@ -21,7 +18,13 @@ public class ServiceImp {
 	Long num[];
 	ApiReader file;
 	
-	//BUILDER()
+	/**
+	 * 
+	 * @param param, type String
+	 * @throws FileNotFoundException --> throws exception when it can't find the file
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 */
 	public ServiceImp(String param) throws FileNotFoundException, IOException, ParseException 
 	{
 		this.file = new ApiReader(url + api_key + param,false,false);
@@ -31,12 +34,19 @@ public class ServiceImp {
 		mediaCalculator2(num);
 	}
 	
+	/**
+	 * 
+	 * @param num --> number of events
+	 */
 	public void calculator(Long num)
 	{
 		out.put("events", num);
 	}
 
-	
+	/**
+	 * 
+	 * @param num --> vector of events
+	 */
 	public void mediaCalculator(Long[] num)
 	{
 		Long sum = (long) 0;
@@ -49,7 +59,10 @@ public class ServiceImp {
 		out.put("monthlyAverage: ", Media);
 	}
 	
-	
+	/**
+	 * 
+	 * @param num --> vector of events
+	 */
 	public void mediaCalculator2(Long[] num)
 	{
 		JSONObject obj1 = new JSONObject();
@@ -70,7 +83,13 @@ public class ServiceImp {
 		out.put("monthWithMoreEvents", obj1);
 	}
 	
-	
+	/**
+	 * 
+	 * @param param, type String
+	 * @throws FileNotFoundException --> throws exception when it can't find the file
+	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
+	 * @throws ParseException --> explains why and where the error occurs in source JSON text
+	 */
 	public void returnMonthlyEvents(String param) throws FileNotFoundException, IOException, ParseException 
 	{
 		String mese;
@@ -86,7 +105,7 @@ public class ServiceImp {
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
 			this.file = new ApiReader (url + api_key + param + mese,false,false); 
-    		num[i] = file.getNum();
+    			num[i] = file.getNum();
     		
     	}
 		out.put("num",num);
@@ -106,4 +125,6 @@ public class ServiceImp {
 	}
 	
 }
+
+
 
