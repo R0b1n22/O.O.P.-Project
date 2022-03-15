@@ -59,7 +59,36 @@ public class Window extends JFrame{
 	public void Listener () {
 		ev_Stats.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed (ActionEvent e) {					
+			public void actionPerformed (ActionEvent e) {
+				ApiReader file;
+				try {
+					file = new ApiReader ("http://localhost:8080/CaStats", false);
+					JSONObject stats = file.getJsonobj();
+					JPanel pnl = new JPanel(new GridLayout(1, 6, 10, 10));
+	 				pnl.add(new JLabel("Total events:"));
+					pnl.add(new JLabel(""+(Long) stats.get("events")));
+					pnl.add(new JLabel("monthlyAverage:"));
+					pnl.add(new JLabel(""+(Double) stats.get("monthlyAverage")));
+					pnl.add(new JLabel("Month with more events:"));
+					pnl.add(new JLabel((String) ((JSONObject) stats.get("monthWME")).get("month")));
+					pnl.add(new JLabel(""));
+					JPanel pnl2 = new JPanel(new GridLayout(6, 4, 10, 10));
+					JSONArray monthlyEv = (JSONArray) stats.get("num");
+					String [] months = {"January:","February:","March:","April:","May:","June:","July:","August:","September:","October:","November:","December:"};
+					for(int i = 0; i < 12; i++) {
+						pnl2.add(new JLabel(months[i]));
+						pnl2.add(new JLabel ("" + monthlyEv.get(i)));
+					}
+					JFrame statsFrame = new JFrame("Stats");
+					statsFrame.getContentPane().add(pnl, BorderLayout.NORTH);
+					statsFrame.getContentPane().add(pnl2, BorderLayout.CENTER);
+					statsFrame.setLocationRelativeTo(null);
+					statsFrame.setSize(700, 700);
+					statsFrame.setVisible(true);
+				} catch (IOException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		ev_State_Stats.addActionListener(new ActionListener() {
