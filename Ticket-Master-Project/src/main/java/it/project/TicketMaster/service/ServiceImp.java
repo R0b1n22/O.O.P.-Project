@@ -1,7 +1,6 @@
 package it.project.TicketMaster.service;
 
 import org.springframework.stereotype.Service;
-//import org.springframework.web.client.RestTemplate;
 import it.project.TicketMaster.model.*;
 
 import java.io.FileNotFoundException;
@@ -23,9 +22,9 @@ public class ServiceImp {
 	ApiReader file;
 	
 	//BUILDER()
-	public ServiceImp(String param) throws FileNotFoundException, IOException, ParseException
+	public ServiceImp(String param) throws FileNotFoundException, IOException, ParseException 
 	{
-		this.file = new ApiReader(url + api_key + param,false);
+		this.file = new ApiReader(url + api_key + param,false,false);
 		returnMonthlyEvents(param);
 		calculator(file.getNum());
 		mediaCalculator(num);
@@ -44,10 +43,10 @@ public class ServiceImp {
 		Double Media = 0.00;
 		for(int i = 0 ; i < 12; i++)
 		{
-			sum += num.get(i);
+			sum += num[i];
 		}
 		Media = (double) (sum/12);
-		out.put("monthlyAverage", Media);
+		out.put("monthlyAverage: ", Media);
 	}
 	
 	
@@ -60,9 +59,9 @@ public class ServiceImp {
 		
 		for(int i = 0 ; i < 12; i++)
 		{
-			if(num.get(i)>lastData)
+			if(num[i] > lastData)
 			{
-				lastData = num.get(i);
+				lastData = num[i];
 				month = i;
 			}
 		}
@@ -86,13 +85,21 @@ public class ServiceImp {
 				case 12: mese = "&startDateTime=2022-12-01T00:00:00Z&endDateTime=2022-12-31T23:59:59Z"; break;
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
-			this.file = new ApiReader (url + api_key + param + mese,false);
-    			num.add(file.getNum());
+			this.file = new ApiReader (url + api_key + param + mese,false,false); 
+    		num[i] = file.getNum();
     		
-    		}
+    	}
 		out.put("num",num);
 	}
 	
+	public Long[] getNum() {
+		return num;
+	}
+
+	public void setNum(Long[] num) {
+		this.num = num;
+	}
+
 	public JSONObject getStats()
 	{
 		return out;
