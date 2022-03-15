@@ -16,6 +16,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
+import it.project.TicketMaster.model.ApiReader;
 
 public class Window extends JFrame{
 //ATTRIBUTI
@@ -67,7 +68,7 @@ public class Window extends JFrame{
 			public void actionPerformed (ActionEvent e) {
 				ApiReader file;
 				try {
-					file = new ApiReader ("http://localhost:8080/CaStats", false);
+					file = new ApiReader ("http://localhost:8080/CaStats", false, true);
 					statsDisplayer(file, "CA");
 				} catch (IOException | ParseException e1) {
 					// TODO Auto-generated catch block
@@ -80,8 +81,8 @@ public class Window extends JFrame{
 			public void actionPerformed (ActionEvent e) {
 				ApiReader file;
 				try {
-					file = new ApiReader ("http://localhost:8080/StateStats?stateCode=" + state.getText(), false);
-					statsDisplayer(file, state.getText())
+					file = new ApiReader ("http://localhost:8080/StateStats?stateCode=" + state.getText(), false, true);
+					statsDisplayer(file, state.getText());
 				} catch (IOException | ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -93,7 +94,7 @@ public class Window extends JFrame{
 			public void actionPerformed (ActionEvent e) {
 				ApiReader file;
 				try {
-					file = new ApiReader ("http://localhost:8080/CityStats?city=" + city.getText(), false);
+					file = new ApiReader ("http://localhost:8080/CityStats?city=" + city.getText(), false, true);
 					statsDisplayer(file, city.getText());
 				} catch (IOException | ParseException e1) {
 					// TODO Auto-generated catch block
@@ -137,7 +138,6 @@ public class Window extends JFrame{
 			monthPnl.add(num);
 			num.setEditable(false);
 		}
-		monthPnl.setBackground(color);
 //Panel with FlowLayout
 		JPanel flowPnl2 = new JPanel();
 		flowPnl2.add(monthPnl);
