@@ -18,10 +18,22 @@ Ticket Advisor aims to monitor events in all countries around the world. Monitor
 ## **Route**
 > This application use only the `GET` request
 
-Rotta | Tipo | Descrizione
----- | ---- | ----  
-/events | GET | Returns the total events of Canada
-/cityEvents | GET | Returns the total events by city
-/StateStats | GET | Returns statistics relating to a specific state of Canada
-/CountryStats | GET | Returns statistics relating to a specific country
-/CityStats | GET | Returns statistics relating to a specific city
+Route | Type | Parameter | Description
+---- | ---- | ---- | ---- 
+/events | ` GET ` | --- | Returns the total events of Canada
+/cityEvents | ` GET ` | city | Returns the total events by city
+/StateStats | ` GET ` | stateCode | Returns statistics relating to a specific state of Canada
+/CountryStats | ` GET ` | countryCode | Returns statistics relating to a specific country
+/CityStats | ` GET ` | city | Returns statistics relating to a specific city
+
+To use these paths you need to use the [Postman application](https://www.postman.com/) that allows you to enter the correct path using the address:
+```
+http://localhost:8080
+```
+
+After that it is necessary to insert the routes shown in the table with the respective parameters.
+
+⚠️ Be sure to select **GET** as the request type on [Postman](https://www.postman.com/)
+
+## **Examples**
+1.   **/events**
