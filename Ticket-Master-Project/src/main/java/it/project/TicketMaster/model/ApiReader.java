@@ -65,7 +65,7 @@ public class ApiReader {
 		JSONArray jEvents = (JSONArray) embedded.get("events");
 		Long num = (Long) ((JSONObject) jsonR.get("page")).get("totalPages");
 		for (long j = 0; j < num; j++) {
-			if(this.reader(j)) {
+			if(this.jsonParser(j, false)) {
 				for (int i = 0; i < jEvents.size(); i++) {
 				    event = ((JSONObject) jEvents.get(i));
 				    Event e = new Event ((String) event.get("id"));
