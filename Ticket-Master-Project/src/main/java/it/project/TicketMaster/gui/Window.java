@@ -32,10 +32,10 @@ public class Window extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	//Attributes
-	JButton ev_All_Stats = new JButton("Mostra Statistiche");
-	JButton ev_Country_Stats = new JButton("Mostra Statistiche");
-	JButton ev_State_Stats = new JButton("Mostra Statistiche");
-	JButton ev_City_Stats = new JButton("Mostra Statistiche");
+	JButton ev_All_Stats = new JButton("Show statistics");
+	JButton ev_Country_Stats = new JButton("Show statistics");
+	JButton ev_State_Stats = new JButton("Show statistics");
+	JButton ev_City_Stats = new JButton("Show statistics");
 	TextField country = new TextField("CA");
 	TextField state = new TextField(15);
 	TextField city = new TextField(15);
@@ -61,18 +61,18 @@ public class Window extends JFrame{
 	public void init () {
 	//Panel for JLabel, TextField and JButton
 		JPanel panel = new JPanel (new GridLayout (4, 3, 15, 15));
-		panel.add(new JLabel("Eventi globali", JLabel.RIGHT));
+		panel.add(new JLabel("Global Events", JLabel.RIGHT));
 		panel.add(new JLabel(""));
 		panel.add(ev_All_Stats);
-		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
+		panel.add(new JLabel("Events of (Enter the country code)", JLabel.RIGHT));
 		country.setFont(font);
 		panel.add(country);
 		panel.add(ev_Country_Stats);
-		panel.add(new JLabel("Eventi di (Inserisci il codice dello Stato)", JLabel.RIGHT));
+		panel.add(new JLabel("Events of (Enter the state code)", JLabel.RIGHT));
 		state.setFont(font);
 		panel.add(state);
 		panel.add(ev_State_Stats);
-		panel.add(new JLabel("Eventi di (Inserisci Città)", JLabel.RIGHT));
+		panel.add(new JLabel("Events of (Enter the city)", JLabel.RIGHT));
 		city.setFont(font);
 		panel.add(city);
 		panel.add(ev_City_Stats);
