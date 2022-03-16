@@ -1,6 +1,5 @@
 package it.project.TicketMaster.service;
 
-import org.springframework.stereotype.Service;
 import it.project.TicketMaster.model.*;
 
 import java.io.FileNotFoundException;
@@ -9,13 +8,12 @@ import java.io.IOException;
 import org.json.simple.*;
 import org.json.simple.parser.ParseException;
 
-@Service
 public class ServiceImp {
 
 	private static JSONObject out = new JSONObject();
 	private String api_key = "7elxdku9GGG5k8j0Xm8KWdANDgecHMV0";
 	private String url = "https://app.ticketmaster.com/discovery/v2/events?apikey=";
-	Long num[];
+	Long num[] = new Long[12];
 	ApiReader file;
 	
 	/**
@@ -30,8 +28,8 @@ public class ServiceImp {
 		this.file = new ApiReader(url + api_key + param,false,false);
 		returnMonthlyEvents(param);
 		calculator(file.getNum());
-		mediaCalculator(num);
-		mediaCalculator2(num);
+		mediaCalculator();
+		mediaCalculator2();
 	}
 	
 	/**
@@ -47,7 +45,7 @@ public class ServiceImp {
 	 * 
 	 * @param num --> vector of events
 	 */
-	public void mediaCalculator(Long[] num)
+	public void mediaCalculator()
 	{
 		Long sum = (long) 0;
 		Double Media = 0.00;
@@ -56,14 +54,14 @@ public class ServiceImp {
 			sum += num[i];
 		}
 		Media = (double) (sum/12);
-		out.put("monthlyAverage: ", Media);
+		out.put("monthlyAverage", Media);
 	}
 	
 	/**
 	 * 
 	 * @param num --> vector of events
 	 */
-	public void mediaCalculator2(Long[] num)
+	public void mediaCalculator2()
 	{
 		JSONObject obj1 = new JSONObject();
 		Long lastData = (long) 0;
@@ -105,7 +103,7 @@ public class ServiceImp {
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
 			this.file = new ApiReader (url + api_key + param + mese,false,false); 
-    			num[i] = file.getNum();
+    			num[i-1] = file.getNum();
     		
     	}
 		out.put("num",num);
