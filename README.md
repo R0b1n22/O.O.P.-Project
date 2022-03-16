@@ -8,6 +8,7 @@
 * [Description](#description)
 * [Route](#route)
 * [Examples](#examples)
+* [GUI](#gui)
 * [UML](#uml)
 * [Credits](#credits)
 * [Authors](#authors)
@@ -48,6 +49,12 @@ After that it is necessary to insert the routes shown in the table with the resp
 6.   **/CountryStats**
 7.   **/StateStats**
 8.   **/CityStats**
+
+## **GUI**
+The GUI is the Graphical User Interface with which users interact with computers and computer programs. In this program we have included one to have a graphic feedback that facilitates the use of TicketAdvisor
+
+⚠️ **ATTENTION!!!** - The GUI does not entirely replace the functioning of Postman, as it only takes care of printing the statistics of the events on the screen. Therefore to get the JSONObject of the events it is necessary to use [Postman](https://www.postman.com/).
+
 
 ## **UML**
 
