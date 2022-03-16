@@ -37,8 +37,8 @@ public class Window extends JFrame{
 	JButton ev_State_Stats = new JButton("Show statistics");
 	JButton ev_City_Stats = new JButton("Show statistics");
 	TextField country = new TextField("CA");
-	TextField state = new TextField(15);
-	TextField city = new TextField(15);
+	TextField state = new TextField("ON");
+	TextField city = new TextField("Toronto");
 	Color color = new Color (232, 248, 248);
 	Font font = new Font("", Font.BOLD, 13);
 	ImageIcon icon = new ImageIcon (System.getProperty("user.dir") + "\\TicketAdvisorImage.png");
