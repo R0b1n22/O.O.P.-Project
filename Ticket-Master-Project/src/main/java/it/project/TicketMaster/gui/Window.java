@@ -61,7 +61,7 @@ public class Window extends JFrame{
 	public void init () {
 	//Panel for JLabel, TextField and JButton
 		JPanel panel = new JPanel (new GridLayout (4, 3, 15, 15));
-		panel.add(new JLabel("Eventi globali"), JLabel.RIGHT);
+		panel.add(new JLabel("Eventi globali", JLabel.RIGHT));
 		panel.add(new JLabel(""));
 		panel.add(ev_All_Stats);
 		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
