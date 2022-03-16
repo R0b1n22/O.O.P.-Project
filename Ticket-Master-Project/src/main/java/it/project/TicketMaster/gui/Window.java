@@ -26,6 +26,7 @@ import it.project.TicketMaster.model.ApiReader;
 
 public class Window extends JFrame{
 //ATTRIBUTI
+	JButton ev_All_Stats = new JButton("Mostra Statistiche");
 	JButton ev_Country_Stats = new JButton("Mostra Statistiche");
 	JButton ev_State_Stats = new JButton("Mostra Statistiche");
 	JButton ev_City_Stats = new JButton("Mostra Statistiche");
@@ -46,7 +47,10 @@ public class Window extends JFrame{
 //METHODS (for the main screen and the stats window)
 	public void init () {
 	//Panel for JLabel, TextField and JButton
-		JPanel panel = new JPanel (new GridLayout (3, 3, 15, 15));
+		JPanel panel = new JPanel (new GridLayout (4, 3, 15, 15));
+		panel.add(new JLabel("Eventi globali"), JLabel.RIGHT);
+		panel.add(new JLabel(""));
+		panel.add(ev_All_Stats);
 		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
 		country.setFont(font);
 		panel.add(country);
@@ -75,6 +79,19 @@ public class Window extends JFrame{
 	
 //Listener for Stats Buttons	
 	public void Listener () {
+		ev_All_Stats.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				ApiReader file;
+				try {
+					file = new ApiReader ("http://localhost:8080/AllStats", false, true);
+					statsDisplayer(file, "World");
+				} catch (IOException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		ev_Country_Stats.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
