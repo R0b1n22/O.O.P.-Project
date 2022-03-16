@@ -6,7 +6,7 @@ public class CityNotFoundException extends Exception{
 	String mex;
 	
 	/**
-	 * @param mex rappresenta il messaggio di errore.
+	 * @param mex represents the error message.
 	 */
 	
 	public CityNotFoundException(String mex) {
@@ -15,8 +15,8 @@ public class CityNotFoundException extends Exception{
 	}
 	
 	/**
-	 * Restituisce un messaggio di errore passato dal costruttore quando il nome della città non è stato trovato.
-	 * @return String che contiene il messaggio d'errore che viene stampato.
+	 * Returns an error message passed by the constructor when the city name was not found.
+	 * @return String that contains the error message that is printed.
 	 */
 	
 	public String getMex() {
