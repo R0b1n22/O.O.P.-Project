@@ -96,7 +96,7 @@ public class ServiceImp {
 				case 12: mese = "&startDateTime=2022-12-01T00:00:00Z&endDateTime=2022-12-31T23:59:59Z"; break;
 				default: mese = "&startDateTime=2022-0"+i+"-01T00:00:00Z&endDateTime=2022-0"+i+"-31T23:59:59Z";
 			}
-			this.file = new ApiReader (url + api_key + param + mese,false,false); 
+			ApiReader file = new ApiReader (url + api_key + param + mese,false,false); 
     			num[i-1] = file.getNum();
     		
     	}
