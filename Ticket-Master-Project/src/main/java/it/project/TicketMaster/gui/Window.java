@@ -25,7 +25,10 @@ import org.json.simple.parser.ParseException;
 import it.project.TicketMaster.model.ApiReader;
 
 public class Window extends JFrame{
-//ATTRIBUTI
+	
+	private static final long serialVersionUID = 1L;
+	
+	//Attributes
 	JButton ev_All_Stats = new JButton("Mostra Statistiche");
 	JButton ev_Country_Stats = new JButton("Mostra Statistiche");
 	JButton ev_State_Stats = new JButton("Mostra Statistiche");
@@ -36,7 +39,11 @@ public class Window extends JFrame{
 	Color color = new Color (232, 248, 248);
 	Font font = new Font("", Font.BOLD, 13);
 	ImageIcon icon = new ImageIcon (System.getProperty("user.dir") + "\\TicketAdvisorImage.png");
-//BUILDER
+
+	/**
+	 * Constructor
+	 * @param titolo
+	 */
 	public Window (String titolo) { 	
 		super(titolo);
 		this.setSize(750, 200);
@@ -44,7 +51,10 @@ public class Window extends JFrame{
 		this.setIconImage(icon.getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
   	}
-//METHODS (for the main screen and the stats window)
+
+	/**
+	 * Method for display the main window
+	 */
 	public void init () {
 	//Panel for JLabel, TextField and JButton
 		JPanel panel = new JPanel (new GridLayout (4, 3, 15, 15));
@@ -77,8 +87,12 @@ public class Window extends JFrame{
 		this.getContentPane().add(pnl2, BorderLayout.CENTER);
 	}
 	
-//Listener for Stats Buttons	
-	public void Listener () {
+	/**
+	 * Listener for stats button
+	 * @throws EmptyStringException
+	 * @throws WrongParamException
+	 */	
+	public void Listener () throws EmptyStringException, WrongParamException {
 		ev_All_Stats.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -133,9 +147,14 @@ public class Window extends JFrame{
 		});
 	}
 	
+	/**
+	 * Method for display the stats window
+	 * @param file
+	 * @param name
+	 */
 	public void statsDisplayer (ApiReader file, String name) {
 		JSONObject stats = file.getJsonobj();
-//Stats getter
+	//Stats getter
 		JPanel statsPnl = new JPanel(new GridLayout(3, 2, 10, 10));
 		statsPnl.setBackground(color);
 		statsPnl.add(new JLabel("Total events:"));
@@ -153,16 +172,16 @@ public class Window extends JFrame{
 		monthWME.setFont(font);
 		statsPnl.add(monthWME);
 		monthWME.setEditable(false);
-//Panel with BoxLayout
+	//Panel with BoxLayout
 		JPanel boxPnl = new JPanel();
 		boxPnl.add(statsPnl);
 		boxPnl.setLayout(new BoxLayout(boxPnl, BoxLayout.X_AXIS));
-//Panel with FlowLayout
+	//Panel with FlowLayout
 		JPanel flowPnl = new JPanel();
 		flowPnl.add(boxPnl);
 		flowPnl.setLayout(new FlowLayout(FlowLayout.LEFT));
 		flowPnl.setBackground(color);
-//Months events number getter
+	//Months events number getter
 		JPanel monthPnl = new JPanel(new GridLayout(4, 6, 10, 10));
 		JSONArray monthlyEv = (JSONArray) stats.get("num");
 		String [] months = {"January:","February:","March:","April:","May:","June:","July:","August:","September:","October:","November:","December:"};
@@ -174,12 +193,12 @@ public class Window extends JFrame{
 			num.setEditable(false);
 		}
 		monthPnl.setBackground(color);
-//Panel with FlowLayout
+	//Panel with FlowLayout
 		JPanel flowPnl2 = new JPanel();
 		flowPnl2.add(monthPnl);
 		flowPnl2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		flowPnl2.setBackground(color);
-//Frame
+	//Adding flowPnl and flowPnl2 to JFrame
 		JFrame statsFrame = new JFrame("Stats of " + name);
 		statsFrame.getContentPane().add(flowPnl, BorderLayout.NORTH);
 		statsFrame.getContentPane().add(flowPnl2, BorderLayout.CENTER);
