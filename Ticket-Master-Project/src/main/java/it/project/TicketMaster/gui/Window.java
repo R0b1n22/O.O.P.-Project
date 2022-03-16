@@ -44,10 +44,6 @@ public class Window extends JFrame{
   	}
 //METHODS (for the main screen and the stats window)
 	public void init () {
-	//Setting ActionCommand for buttons
-		ev_Country_Stats.setActionCommand("Stats");
-		ev_State_Stats.setActionCommand("evStateStats");
-		ev_City_Stats.setActionCommand("evCityStats");
 	//Panel for JLabel, TextField and JButton
 		JPanel panel = new JPanel (new GridLayout (3, 3, 15, 15));
 		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
