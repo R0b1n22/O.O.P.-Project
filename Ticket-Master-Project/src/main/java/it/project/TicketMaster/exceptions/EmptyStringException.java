@@ -7,7 +7,7 @@ public class EmptyStringException extends Exception {
 	String mex;
 	
 	/**
-	 * @param mex rappresenta il messaggio di errore.
+	 * @param mex represents the error message.
 	 */
 	
 	public EmptyStringException(String mex) {
@@ -16,8 +16,8 @@ public class EmptyStringException extends Exception {
 	}
 	
 	/**
-	 * Restituisce un messaggio di errore passato al costruttore quando viene inserita una stringa vuota.
-	 * @return String che contiene il messaggio d'errore che viene stampato.
+	 * Returns an error message passed to the constructor when an empty string is entered.
+	 * @return String which contains the error message that is printed.
 	 */
 	
 	public String getMex() {
