@@ -22,14 +22,14 @@ TicketAdvisor aims to monitor events in all countries around the world. Monitori
 
 Route | Type | Parameter | Description
 ---- | ---- | ---- | ---- 
-/allEvents | ` GET ` | --- | Returns the total events of the world
-/countryEvents | ` GET ` | countryCode | Returns the total events of the country
-/stateEvents | ` GET ` | stateCode | Returns the total events of the state
-/cityEvents | ` GET ` | city | Returns the total events by city
-/AllStats | ` GET ` | --- | Returns statistics for the whole world 
-/CountryStats | ` GET ` | countryCode | Returns statistics relating to a specific country
-/StateStats | ` GET ` | stateCode | Returns statistics relating to a specific state of Canada
-/CityStats | ` GET ` | city | Returns statistics relating to a specific city
+[/allEvents](#1) | ` GET ` | --- | Returns the total events of the world
+[/countryEvents](#2) | ` GET ` | countryCode | Returns the total events of the country
+[/stateEvents](#3) | ` GET ` | stateCode | Returns the total events of the state
+[/cityEvents](#4) | ` GET ` | city | Returns the total events by city
+[/AllStats](#5) | ` GET ` | --- | Returns statistics for the whole world 
+[/CountryStats](#6) | ` GET ` | countryCode | Returns statistics relating to a specific country
+[/StateStats](#7) | ` GET ` | stateCode | Returns statistics relating to a specific state of Canada
+[/CityStats](#8) | ` GET ` | city | Returns statistics relating to a specific city
 
 To use these paths you need to use the [Postman application](https://www.postman.com/) that allows you to enter the correct path using the address:
 ```
@@ -41,13 +41,21 @@ After that it is necessary to insert the routes shown in the table with the resp
 ⚠️ Be sure to select **GET** as the request type on [Postman](https://www.postman.com/)
 
 ## **Examples**
+<a name="1"></a>
 1.   **/allEvents**
+<a name="2"></a>
 2.   **/countryEvents**
+<a name="3"></a>
 3.   **/stateEvents**
+<a name="4"></a>
 4.   **/cityEvents**
+<a name="5"></a>
 5.   **/AllStats**
+<a name="6"></a>
 6.   **/CountryStats**
+<a name="7"></a>
 7.   **/StateStats**
+<a name="8"></a>
 8.   **/CityStats**
 
 ## **GUI**
