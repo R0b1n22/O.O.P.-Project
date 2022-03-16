@@ -2,7 +2,8 @@
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/91560500/158548996-2c638f89-c01e-40f2-abe4-ee6fb79a167c.png" width="400px" height="350px"/></p>
-  
+ 
+<a name="back-to-index"></a>
 ## Index
 * [Description](#description)
 * [Route](#route)
@@ -13,10 +14,7 @@
 
 
 ## **Description**
-TicketAdvisor aims to monitor events in all countries around the world. Monitoring takes place through the return of all events in JSON format to be used to create statistics. All this was possible through the use of an API provided by the US company Ticket Master and through the springboot framework
-##
-:white_check_mark: [Api_Ticket Master](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2)
-:white_check_mark: [Spring Boot](https://start.spring.io/)
+TicketAdvisor aims to monitor events in all countries around the world. Monitoring takes place through the return of all events in JSON format to be used to create statistics. 
 
 ## **Route**
 > This application use only the `GET` request
@@ -52,3 +50,19 @@ After that it is necessary to insert the routes shown in the table with the resp
 8.   **/CityStats**
 
 ## **UML**
+
+## **Credits**
+All this was possible through the use of an **API** provided by the US company Ticket Master, through the **Spring Boot** framework and the **Postman** simulation platform.
+
+##
+:white_check_mark: [Api_Ticket Master](https://developer.ticketmaster.com/products-and-docs/apis/discovery-api/v2/#search-events-v2)
+:white_check_mark: [Spring Boot](https://start.spring.io/)
+:white_check_mark: [Postman application](https://www.postman.com/)
+
+## **Authors**
+Surname | Name | Github | E-mail
+--- | --- | --- | ---
+Inverni | Roberto | [R0b1n404](https://github.com/R0b1n404?tab=repositories) | robertoinverni2002@gmail.com
+Tridici | Daniel | [Dan13L01](https://github.com/Dan13L01?tab=repositories) | daniel.tridici@hotmail.com
+
+📑 [Back to index](#back-to-index)
