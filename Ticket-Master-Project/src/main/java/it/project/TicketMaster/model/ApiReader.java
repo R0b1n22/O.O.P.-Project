@@ -21,21 +21,47 @@ public class ApiReader {
 	private String url;
 	private JSONObject jsonR;
 	private Vector<Event> events = new Vector<Event>();
-//CONSTRUCTOR	
+	
+	/**
+	 * Constructor
+	 * @param url
+	 * @param doGetter
+	 * @param statsReader
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public ApiReader (String url, boolean doGetter, boolean statsReader) throws FileNotFoundException, IOException, ParseException {
 		this.url = url;
 		if (doGetter) this.getter();
 		else this.jsonParser(0,statsReader);
 	}
-//GETTER & SETTER	
+	
+	/**
+	 * Getter
+	 * @return JSONObject jsonR
+	 */
 	public JSONObject getJsonobj() {
 		return jsonR;
 	}
-
+	
+	/**
+	 * Setter
+	 * @param jsonobj
+	 */
 	public void setJsonobj(JSONObject jsonobj) {
 		this.jsonR = jsonobj;
 	}
-//PARSER	
+	
+	/**
+	 * Parser of API response
+	 * @param page
+	 * @param statsReader
+	 * @return Boolean
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public boolean jsonParser (long page, boolean statsReader) throws FileNotFoundException, IOException, ParseException {
 		URL url;
 		if(statsReader) url = new URL(this.url);
@@ -53,7 +79,14 @@ public class ApiReader {
 			return false;
 		}
 	}
-//GETTER
+	
+	/**
+	 * Getter of information from JSONObject parsed by jsonParser
+	 * @return Vector<Event> events
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public Vector<Event> getter () throws FileNotFoundException, IOException, ParseException {
 		String id = null;
 		JSONObject error = new JSONObject();
@@ -96,13 +129,21 @@ public class ApiReader {
 		}
 		return events;
 	}
-//GET TOTAL ELEMENTS
+
+	/**
+	 * Get the number of total events
+	 * @return Number of events
+	 */
 	public Long getNum () {
 		Long num = (Long) ((JSONObject) jsonR.get("page")).get("totalElements");
 		return num;
 	}
-//PUBLICHER
-	public JSONObject publicher () {
+	
+	/**
+	 * Publisher of JSONObject with events
+	 * @return JSONObject with events
+	 */
+	public JSONObject publisher () {
 		JSONArray out = new JSONArray();
 		JSONObject json = new JSONObject();
 		JSONObject num = new JSONObject();
