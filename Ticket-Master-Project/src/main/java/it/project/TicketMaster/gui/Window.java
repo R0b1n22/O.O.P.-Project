@@ -22,6 +22,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
+
+import it.project.TicketMaster.exceptions.EmptyStringException;
+import it.project.TicketMaster.exceptions.WrongParamException;
 import it.project.TicketMaster.model.ApiReader;
 
 public class Window extends JFrame{
