@@ -37,7 +37,7 @@ public class Controller {
         ResponseEntity<JSONObject> response;
 	        try {
 	        	ApiReader file = new ApiReader(url + api_key,true,false);
-	            	response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
+	            	response = new ResponseEntity<JSONObject>(file.publisher(),HttpStatus.OK);        
 	        } catch(Exception e) {
 	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        }
@@ -59,7 +59,7 @@ public class Controller {
         ResponseEntity<JSONObject> response;
 	        try {
 	        	ApiReader file = new ApiReader(url + api_key + "&countryCode=" + countryCode,true,false);
-	                response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
+	                response = new ResponseEntity<JSONObject>(file.publisher(),HttpStatus.OK);        
 	        } catch(Exception e) {
 	        	response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	        }
@@ -80,7 +80,7 @@ public class Controller {
 	ResponseEntity<JSONObject> response;
 	      try {
 			ApiReader file = new ApiReader(url + api_key + "&stateCode=" + stateCode,true,false);
-		    	response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
+		    	response = new ResponseEntity<JSONObject>(file.publisher(),HttpStatus.OK);        
 	       } catch(Exception e) {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	       }
@@ -102,7 +102,7 @@ public class Controller {
 	 ResponseEntity<JSONObject> response;
 	      try {
 			ApiReader file = new ApiReader(url + api_key + "&city=" + city,true,false);
-		    response = new ResponseEntity<JSONObject>(file.publicher(),HttpStatus.OK);        
+		    response = new ResponseEntity<JSONObject>(file.publisher(),HttpStatus.OK);        
 	       } catch(Exception e) {
 			response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	       }
