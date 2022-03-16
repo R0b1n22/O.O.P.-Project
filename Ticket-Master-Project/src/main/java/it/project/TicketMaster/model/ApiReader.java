@@ -63,7 +63,7 @@ public class ApiReader {
 		JSONObject event = new JSONObject();
 		JSONObject embedded = new JSONObject();
 		JSONArray jEvents = new JSONArray();
-		Long num = (Long) 1;
+		Long num = (long) 1;
 		for (long j = 0; j < num; j++) {
 			if(this.jsonParser(j, false)) {
 				num = (Long) ((JSONObject) jsonR.get("page")).get("totalPages");
