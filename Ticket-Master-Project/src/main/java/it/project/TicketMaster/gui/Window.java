@@ -29,6 +29,7 @@ public class Window extends JFrame{
 	JButton ev_Country_Stats = new JButton("Mostra Statistiche");
 	JButton ev_State_Stats = new JButton("Mostra Statistiche");
 	JButton ev_City_Stats = new JButton("Mostra Statistiche");
+	TextField country = new TextField("CA");
 	TextField state = new TextField(15);
 	TextField city = new TextField(15);
 	Color color = new Color (232, 248, 248);
@@ -47,7 +48,8 @@ public class Window extends JFrame{
 	//Panel for JLabel, TextField and JButton
 		JPanel panel = new JPanel (new GridLayout (3, 3, 15, 15));
 		panel.add(new JLabel("Eventi del Canada", JLabel.RIGHT));
-		panel.add(new JLabel(""));
+		country.setFont(font);
+		panel.add(country);
 		panel.add(ev_Country_Stats);
 		panel.add(new JLabel("Eventi di (Inserisci il codice dello Stato)", JLabel.RIGHT));
 		state.setFont(font);
@@ -78,8 +80,8 @@ public class Window extends JFrame{
 			public void actionPerformed (ActionEvent e) {
 				ApiReader file;
 				try {
-					file = new ApiReader ("http://localhost:8080/CaStats", false, true);
-					statsDisplayer(file, "CA");
+					file = new ApiReader ("http://localhost:8080/CountryStats?countryCode=" + country.getText(), false, true);
+					statsDisplayer(file, country.getText());
 				} catch (IOException | ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
