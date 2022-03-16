@@ -1,7 +1,7 @@
 <h1 align="center"> TicketAdvisor </h1>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/91560500/158548996-2c638f89-c01e-40f2-abe4-ee6fb79a167c.png" width="400px" height="350px"/></p>
+  <img src="https://user-images.githubusercontent.com/91560500/158594779-6c675e9d-6ef6-4a41-98b3-f1b09ee1b8d8.png" width="400px" height="350px"/></p>
  
 <a name="back-to-index"></a>
 ## Index
