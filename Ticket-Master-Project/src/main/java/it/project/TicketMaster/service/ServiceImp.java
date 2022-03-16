@@ -41,10 +41,7 @@ public class ServiceImp {
 		out.put("events", num);
 	}
 
-	/**
-	 * 
-	 * @param num --> vector of events
-	 */
+	
 	public void mediaCalculator()
 	{
 		Long sum = (long) 0;
@@ -57,10 +54,7 @@ public class ServiceImp {
 		out.put("monthlyAverage", Media);
 	}
 	
-	/**
-	 * 
-	 * @param num --> vector of events
-	 */
+	
 	public void mediaCalculator2()
 	{
 		JSONObject obj1 = new JSONObject();
@@ -123,6 +117,3 @@ public class ServiceImp {
 	}
 	
 }
-
-
-
