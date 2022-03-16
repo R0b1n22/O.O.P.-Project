@@ -39,7 +39,7 @@ public class Window extends JFrame{
 //BUILDER
 	public Window (String titolo) { 	
 		super(titolo);
-		this.setSize(700, 200);
+		this.setSize(750, 200);
 		this.setLocationRelativeTo(null);
 		this.setIconImage(icon.getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
