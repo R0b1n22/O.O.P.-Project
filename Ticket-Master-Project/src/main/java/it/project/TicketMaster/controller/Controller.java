@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -24,7 +23,6 @@ public class Controller {
 	private String url = "https://app.ticketmaster.com/discovery/v2/events?apikey=";
 	
  
-	@Autowired
 	ServiceImp service;
 	
 	/**
