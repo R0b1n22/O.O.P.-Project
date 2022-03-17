@@ -115,6 +115,19 @@ If we omit the input of the parameters, the statistics of canada are made as sho
 
 ## **UML**
 
+ - The diagram of the classes of the TicketAdvisor main folder:
+
+![image](https://user-images.githubusercontent.com/91560500/158768343-7239ab0b-70b8-47c2-8611-86f653d88f61.png)
+
+ - The diagram of the class of the TicketAdvisor test folder:
+
+![image](https://user-images.githubusercontent.com/91560500/158770304-6cbdaaaf-d378-41b4-bf67-432bfeb15b22.png)
+
+ - General UML:
+
+![image](https://user-images.githubusercontent.com/91560500/158771311-4d098a41-e100-4d62-bd65-a337e973f582.png)
+
+
 ## **Credits**
 All this was possible through the use of an **API** provided by the US company Ticket Master, through the **Spring Boot** framework and the **Postman** simulation platform. The program was developed through the **Eclipse** development environment.
 
