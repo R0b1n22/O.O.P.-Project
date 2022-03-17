@@ -21,7 +21,10 @@ class testConnection {
 	static StringBuilder response;
 	static int code;
 	
-	
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		
@@ -46,12 +49,20 @@ class testConnection {
 		
 	}
 
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		connection = null;
 		assertNull(connection);
 	}
 
+	/**
+	 * 
+	 * @throws IOException
+	 */
 	@Test
 	void testApi() throws IOException {
 		if (code==200)
