@@ -88,7 +88,6 @@ public class ApiReader {
 	 */
 	@SuppressWarnings("unchecked")
 	public Vector<Event> getter () throws FileNotFoundException, IOException, ParseException {
-		String id = null;
 		JSONObject error = new JSONObject();
 		error.put("field", "not defined");
 		JSONArray arr = new JSONArray();
