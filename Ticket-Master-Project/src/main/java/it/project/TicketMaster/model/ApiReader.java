@@ -66,16 +66,15 @@ public class ApiReader {
 		URL url;
 		if(statsReader) url = new URL(this.url);
 		else url = new URL(this.url + "&page=" + page);
-		ResponseEntity response;
 		try {
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 			BufferedReader read = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			JSONParser parser = new JSONParser();
 			this.jsonR = (JSONObject) parser.parse(read);
-			response= new ResponseEntity(HttpStatus.OK);
+			new ResponseEntity<>(HttpStatus.OK);
 			return true;
 		} catch (Exception e) {
-			response = new ResponseEntity(HttpStatus.TOO_MANY_REQUESTS);
+			new ResponseEntity<>(HttpStatus.TOO_MANY_REQUESTS);
 			return false;
 		}
 	}
@@ -87,6 +86,7 @@ public class ApiReader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("unchecked")
 	public Vector<Event> getter () throws FileNotFoundException, IOException, ParseException {
 		String id = null;
 		JSONObject error = new JSONObject();
@@ -143,6 +143,7 @@ public class ApiReader {
 	 * Publisher of JSONObject with events
 	 * @return JSONObject with events
 	 */
+	@SuppressWarnings("unchecked")
 	public JSONObject publisher () {
 		JSONArray out = new JSONArray();
 		JSONObject json = new JSONObject();
