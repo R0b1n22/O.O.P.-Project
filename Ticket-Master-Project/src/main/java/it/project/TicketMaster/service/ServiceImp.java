@@ -36,12 +36,13 @@ public class ServiceImp {
 	 * 
 	 * @param num --> number of events
 	 */
+	@SuppressWarnings("unchecked")
 	public void calculator(Long num)
 	{
 		out.put("events", num);
 	}
 
-	
+	@SuppressWarnings("unchecked")
 	public void mediaCalculator()
 	{
 		Long sum = (long) 0;
@@ -54,7 +55,7 @@ public class ServiceImp {
 		out.put("monthlyAverage", Media);
 	}
 	
-	
+	@SuppressWarnings("unchecked")
 	public void mediaCalculator2()
 	{
 		JSONObject obj1 = new JSONObject();
@@ -82,6 +83,7 @@ public class ServiceImp {
 	 * @throws IOException --> Signals that an I/O exception of some sort has occurred
 	 * @throws ParseException --> explains why and where the error occurs in source JSON text
 	 */
+	@SuppressWarnings("unchecked")
 	public void returnMonthlyEvents(String param) throws FileNotFoundException, IOException, ParseException 
 	{
 		String mese;
