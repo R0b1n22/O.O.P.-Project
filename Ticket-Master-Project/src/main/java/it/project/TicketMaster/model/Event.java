@@ -20,7 +20,11 @@ public class Event {
 	private String venue;
 	private JSONObject healthCheck;
 	private JSONObject ageRestriction;	
-//BUILDER	
+
+	/**
+	 * Constructor
+	 * @param id
+	 */
 	public Event (String id) {
 		this.id = id;
 	}
