@@ -1,0 +1,6 @@
+it.project.TicketMaster
+it.project.TicketMaster.controller
+it.project.TicketMaster.exceptions
+it.project.TicketMaster.gui
+it.project.TicketMaster.model
+it.project.TicketMaster.service
